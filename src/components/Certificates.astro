@@ -1,0 +1,21 @@
+---
+---
+<style>
+  .cert-card { max-width: 400px; margin: 0 auto; }
+  .btn-view-cert {
+    width: 100%; font-size: var(--font-size-label-sm); font-weight: 700;
+    border: 1px solid rgba(66,71,84,0.3); padding: 8px; border-radius: 0.5rem;
+    background: none; color: var(--color-on-surface); cursor: pointer; transition: background 0.3s;
+  }
+  .btn-view-cert:hover { background: var(--color-surface-container-high); }
+</style>
+
+<section class="py-section-padding-desktop px-gutter max-w-container-max mx-auto reveal">
+  <h2 class="text-headline-lg" style="color:var(--color-on-surface);margin-bottom:3rem">Certified Mastery</h2>
+  <div class="cert-card glass-card" style="padding:1.5rem;border-radius:1rem;text-align:center">
+    <img alt="Oracle Certified Associate - Java Mastery" src="/java-cert-preview.png" style="width:100%;border-radius:0.75rem;margin-bottom:1.5rem" />
+    <h4 style="font-weight:700;color:var(--color-on-surface);margin-bottom:0.5rem">Java Mastery</h4>
+    <p class="text-label-sm" style="color:var(--color-on-surface-variant);margin-bottom:1.5rem">Oracle Certified Associate</p>
+    <button class="btn-view-cert" onclick="window.open('/java-certificate.pdf','_blank')">View</button>
+  </div>
+</section>

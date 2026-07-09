@@ -1,0 +1,25 @@
+---
+const stats = [
+  { val: '0+',  target: 20,  label: 'Projects Delivered', color: 'var(--color-primary)',   glow: '173,198,255' },
+  { val: '0+',  target: 5,   label: 'Core Tech Stack',    color: 'var(--color-secondary)', glow: '78,222,163'  },
+  { val: '0+',  target: 3,   label: 'Years Learning',     color: 'var(--color-tertiary)',  glow: '255,183,134' },
+  { val: '0%',  target: 100, label: 'Passion Level',      color: 'var(--color-error)',     glow: '255,180,171' },
+];
+---
+<style>
+  .stats-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+  @media (min-width: 768px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+  .stat-num { font-size: var(--font-size-headline-xl); font-weight: 800; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 0.5rem; transition: transform 0.3s; }
+  .stat-item:hover .stat-num { transform: scale(1.1); }
+</style>
+
+<section class="py-24 reveal" style="background:rgba(16,19,26,0.5);backdrop-filter:blur(4px);border-top:1px solid rgba(66,71,84,0.05);border-bottom:1px solid rgba(66,71,84,0.05)">
+  <div class="px-gutter max-w-container-max mx-auto stats-grid">
+    {stats.map(s => (
+      <div class="stat-item" style="text-align:center">
+        <div class="stat-num" style={`color:${s.color};filter:drop-shadow(0 0 15px rgba(${s.glow},0.4))`} data-target={s.target}>{s.val}</div>
+        <div class="text-label-sm" style="color:var(--color-on-surface-variant);text-transform:uppercase;letter-spacing:0.1em">{s.label}</div>
+      </div>
+    ))}
+  </div>
+</section>

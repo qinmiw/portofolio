@@ -1,0 +1,38 @@
+---
+const categories = [
+  { label: 'Languages',  color: 'var(--color-primary)',   items: [['yellow-400','#facc15','JavaScript'],['blue-500','#3b82f6','PHP'],['orange-500','#f97316','HTML'],['blue-400','#60a5fa','CSS'],['red-500','#ef4444','Java'],['purple-500','#a855f7','Kotlin'],['blue-700','#1d4ed8','C++'],['green-600','#16a34a','C#']] },
+  { label: 'Frameworks', color: '#a78bfa',               items: [['red-600','#dc2626','Laravel'],['blue-400','#60a5fa','React JS'],['cyan-400','#22d3ee','Flutter'],['yellow-400','#facc15','React/Vite'],['orange-500','#f97316','Astro']] },
+  { label: 'Backend',  color: 'var(--color-secondary)', items: [['red-600','#dc2626','Laravel'],['green-500','#22c55e','Node.js']] },
+  { label: 'Mobile',   color: 'var(--color-tertiary)',  items: [['cyan-400','#22d3ee','Flutter'],['indigo-500','#6366f1','Dart'],['purple-500','#a855f7','Kotlin'],['red-500','#ef4444','Java']] },
+  { label: 'Database', color: 'var(--color-error)',     items: [['blue-600','#2563eb','MySQL'],['yellow-600','#ca8a04','Firebase']] },
+  { label: 'Tools',    color: 'var(--color-outline)',   items: [['orange-400','#fb923c','Blender'],['orange-600','#ea580c','Git'],['gray-400','#9ca3af','GitHub'],['purple-500','#a855f7','Figma'],['blue-500','#3b82f6','VS Code'],['orange-500','#f97316','Postman']] },
+];
+---
+<section id="stack" class="py-section-padding-desktop reveal" style="background:var(--color-surface-container-low)">
+  <div class="px-gutter max-w-container-max mx-auto text-center" style="margin-bottom:4rem">
+    <h2 class="text-headline-lg" style="color:var(--color-on-surface);margin-bottom:1rem">Command Center Stack</h2>
+    <p class="text-body-lg" style="color:var(--color-on-surface-variant);max-width:42rem;margin:0 auto">Modern tools and frameworks I leverage to build scalable software.</p>
+  </div>
+  <div class="px-gutter max-w-container-max mx-auto stack-grid">
+    {categories.map(cat => (
+      <div style="display:flex;flex-direction:column;gap:1rem">
+        <h4 class="text-label-sm" style={`color:${cat.color};text-transform:uppercase;letter-spacing:0.1em;font-weight:700`}>{cat.label}</h4>
+        <div style="display:flex;flex-wrap:wrap;gap:0.5rem">
+          {cat.items.map(([,hex,name]) => (
+            <span class="tech-chip text-body-md" style="padding:6px 12px;border-radius:0.5rem;display:flex;align-items:center;gap:8px;cursor:default">
+              <span style={`width:8px;height:8px;border-radius:50%;background:${hex};box-shadow:0 0 5px ${hex}80;flex-shrink:0`}></span>
+              {name}
+            </span>
+          ))}
+        </div>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .stack-grid { display: grid; gap: 2rem; grid-template-columns: 1fr 1fr; }
+  @media (min-width: 768px)  { .stack-grid { grid-template-columns: repeat(3, 1fr); } }
+  @media (min-width: 1024px) { .stack-grid { grid-template-columns: repeat(5, 1fr); } }
+  @media (max-width: 480px)  { .stack-grid { grid-template-columns: 1fr; } }
+</style>

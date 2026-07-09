@@ -1,11 +1,129 @@
 ---
-import Welcome from '../components/Welcome.astro';
 import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Navbar from '../components/Navbar.astro';
+import Hero from '../components/Hero.astro';
+import About from '../components/About.astro';
+import TechStack from '../components/TechStack.astro';
+import Experience from '../components/Experience.astro';
+import MobileProjects from '../components/MobileProjects.astro';
+import WebProjects from '../components/WebProjects.astro';
+import Certificates from '../components/Certificates.astro';
+import Services from '../components/Services.astro';
+import Contact from '../components/Contact.astro';
+import Footer from '../components/Footer.astro';
+import '../styles/global.css';
 ---
 
 <Layout>
-	<Welcome />
+  <!-- Ambient Parallax Background -->
+  <div class="fixed inset-0 pointer-events-none overflow-hidden" style="z-index:-1">
+    <div
+      id="ambient-bg"
+      style="
+        position:absolute;
+        top:-20%;left:-10%;
+        width:120%;height:150vh;
+        background: radial-gradient(ellipse at top right, rgba(173,198,255,0.1), #10131a, #10131a);
+        opacity:0.6;
+        filter:blur(80px);
+        transition:transform 0.075s linear;
+      "
+    ></div>
+  </div>
+
+  <Navbar />
+  <Hero />
+  <About />
+  <TechStack />
+  <Experience />
+  <MobileProjects />
+  <WebProjects />
+  <Certificates />
+  <Services />
+  <Contact />
+  <Footer />
+
+  <script>
+    // ── Scroll Reveal ──────────────────────────────────────────
+    const revealObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (e.isIntersecting) { e.target.classList.add('active'); obs.unobserve(e.target); }
+      });
+    }, { rootMargin: '0px 0px -100px 0px', threshold: 0.1 });
+    document.querySelectorAll('.reveal').forEach(el => revealObserver.observe(el));
+
+    // ── Animated Counters ──────────────────────────────────────
+    const counterObserver = new IntersectionObserver((entries, obs) => {
+      entries.forEach(e => {
+        if (!e.isIntersecting) return;
+        const el = e.target as HTMLElement;
+        const target = +(el.dataset.target ?? 0);
+        const isPercent = el.innerText.includes('%');
+        const tick = () => {
+          const cur = +(el.innerText.replace(/[+%]/g, ''));
+          const inc = target / 100;
+          if (cur < target) { el.innerText = Math.ceil(cur + inc) + (isPercent ? '%' : '+'); setTimeout(tick, 20); }
+          else { el.innerText = target + (isPercent ? '%' : '+'); }
+        };
+        tick();
+        obs.unobserve(el);
+      });
+    }, { threshold: 1 });
+    document.querySelectorAll('[data-target]').forEach(c => counterObserver.observe(c));
+
+    // ── Particle Canvas ────────────────────────────────────────
+    const canvas = document.getElementById('hero-canvas') as HTMLCanvasElement | null;
+    if (canvas) {
+      const ctx = canvas.getContext('2d')!;
+      type P = { x:number; y:number; size:number; sx:number; sy:number };
+      let pts: P[] = [];
+
+      const resize = () => {
+        canvas.width  = canvas.parentElement!.offsetWidth;
+        canvas.height = canvas.parentElement!.offsetHeight;
+      };
+      window.addEventListener('resize', resize);
+      resize();
+
+      const init = () => {
+        pts = [];
+        const n = (canvas.width * canvas.height) / 15000;
+        for (let i = 0; i < n; i++) pts.push({
+          x: Math.random() * canvas.width,  y: Math.random() * canvas.height,
+          size: Math.random() * 2 + 1,
+          sx: (Math.random() - 0.5) * 0.5,  sy: (Math.random() - 0.5) * 0.5,
+        });
+      };
+      init();
+
+      const draw = () => {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        pts.forEach((p, i) => {
+          p.x += p.sx; p.y += p.sy;
+          if (p.x < 0 || p.x > canvas.width)  p.sx *= -1;
+          if (p.y < 0 || p.y > canvas.height) p.sy *= -1;
+          ctx.fillStyle = 'rgba(173,198,255,0.5)';
+          ctx.beginPath(); ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2); ctx.fill();
+          for (let j = i + 1; j < pts.length; j++) {
+            const dx = p.x - pts[j].x, dy = p.y - pts[j].y;
+            const d = Math.sqrt(dx*dx + dy*dy);
+            if (d < 100) {
+              ctx.beginPath();
+              ctx.strokeStyle = `rgba(173,198,255,${0.15 - d/800})`;
+              ctx.lineWidth = 1;
+              ctx.moveTo(p.x, p.y); ctx.lineTo(pts[j].x, pts[j].y); ctx.stroke();
+            }
+          }
+        });
+        requestAnimationFrame(draw);
+      };
+      draw();
+    }
+
+    // ── Parallax Ambient ───────────────────────────────────────
+    const amb = document.getElementById('ambient-bg');
+    window.addEventListener('scroll', () => {
+      if (amb) amb.style.transform = `translateY(${window.scrollY * 0.4}px)`;
+    });
+  </script>
 </Layout>

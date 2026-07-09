@@ -1,0 +1,39 @@
+---
+const projects = [
+  { title: 'Web-Based Student Attendance System', desc: 'School attendance management platform featuring real-time tracking, centralized student management, automated reporting, and an intuitive dashboard for teachers and administrators.', stack: 'PHP Native & MySQL', href: '/projects/sistem-absensi', img: 'image.png' },
+  { title: 'SIMORA - Company Car Booking System', desc: 'Enterprise car booking platform for PT. Belaputera Intiland featuring real-time GPS tracking, analytics dashboard, approval workflow, and role-based access control.', stack: 'React.js & Laravel', href: '/projects/simora', img: '/simora.png' },
+  { title: 'Employee Attendance System', desc: 'Digital attendance system with face recognition, leave & overtime management, and automated PDF reporting for Admin and Employee roles.', stack: 'JavaScript & Laravel', href: '/projects/absen-pekerjaan', img: '/absenpekerjaan.png' },
+];
+---
+<style>
+  .web-grid { display: grid; gap: 2rem; grid-template-columns: 1fr; }
+  @media (min-width: 640px)  { .web-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .web-grid { grid-template-columns: repeat(3, 1fr); } }
+  .project-card { border-radius: 1rem; overflow: hidden; cursor: pointer; }
+  .project-card .thumb { height: 12rem; overflow: hidden; display:flex; align-items:center; justify-content:center; background:#1d2027; }
+  .project-card .thumb img { width: 100%; height: 100%; object-fit: contain; transition: transform 0.5s; }
+  .project-card:hover .thumb img { transform: scale(1.1); }
+  .project-card h4 { transition: color 0.3s; }
+  .project-card:hover h4 { color: var(--color-primary) !important; }
+  .view-link { transition: transform 0.3s; display: flex; align-items: center; gap: 4px; }
+  .project-card:hover .view-link { transform: translateX(8px); }
+</style>
+
+<section id="projects" class="py-section-padding-desktop px-gutter max-w-container-max mx-auto reveal">
+  <h2 class="text-headline-lg" style="color:var(--color-on-surface);margin-bottom:3rem">Web Ecosystems</h2>
+  <div class="web-grid">
+    {projects.map(p => (
+      <div class="glass-card project-card">
+        <div class="thumb"><img alt={p.title} src={p.img} /></div>
+        <div style="padding:1.5rem">
+          <h4 class="text-headline-md" style="color:var(--color-on-surface);margin-bottom:0.5rem">{p.title}</h4>
+          <p class="text-body-md" style="color:var(--color-on-surface-variant);margin-bottom:1.5rem">{p.desc}</p>
+          <div style="display:flex;justify-content:space-between;align-items:center">
+            <span class="text-label-sm" style="color:var(--color-primary);font-weight:700">{p.stack}</span>
+            <a class="view-link text-label-sm" href={p.href} style="color:var(--color-secondary);text-decoration:none">View <span class="material-symbols-outlined" style="font-size:18px">arrow_forward</span></a>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

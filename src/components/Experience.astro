@@ -1,0 +1,47 @@
+---
+const items = [
+  { period: 'Jan 2026 - May 2026', role: 'Frontend Mobile Developer', company: 'PT Delta Solusi Internet', desc: 'Designing and building a scalable Flutter-based customer self-service platform for PT. Delta Solusi Internet, featuring installation requests, real-time progress tracking, billing systems, support ticketing, referral management, and secure API integration.', nodeColor: 'var(--color-secondary)', periodColor: 'var(--color-secondary)', delay: '0ms' },
+];
+---
+<style>
+  .timeline-wrap { position: relative; max-width: 56rem; margin: 0 auto; }
+  .timeline-line {
+    position: absolute; left: 0; top: 0; bottom: 0; width: 2px;
+    background: linear-gradient(to bottom, transparent, #1e293b, transparent);
+  }
+  @media (min-width: 768px) { .timeline-line { left: 50%; } }
+  .t-item { position: relative; margin-bottom: 3rem; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+  .t-spacer { width: 45%; }
+  .t-node {
+    position: absolute; left: -10px;
+    width: 20px; height: 20px; border-radius: 50%;
+    z-index: 10; transition: transform 0.3s;
+  }
+  .t-item:hover .t-node { transform: scale(1.25); }
+  .t-card { width: 45%; margin-left: 2rem; }
+  @media (min-width: 768px) {
+    .t-node { left: 50%; margin-left: -10px; }
+    .t-card { margin-left: 0; }
+    .t-item.reverse { flex-direction: row-reverse; }
+  }
+  @media (max-width: 767px) { .t-spacer { display: none; } .t-card { width: calc(100% - 2rem); } }
+</style>
+
+<section id="experience" class="py-section-padding-desktop px-gutter max-w-container-max mx-auto reveal">
+  <h2 class="text-headline-lg" style="color:var(--color-on-surface);margin-bottom:4rem;text-align:center">Engineering Journey</h2>
+  <div class="timeline-wrap">
+    <div class="timeline-line"></div>
+    {items.map((it, i) => (
+      <div class={`t-item reveal ${i % 2 === 1 ? 'reverse' : ''}`} style={`transition-delay:${it.delay}`}>
+        <div class="t-spacer"></div>
+        <div class="t-node glow-node" style={`background:${it.nodeColor}`}></div>
+        <div class="t-card glass-card" style="padding:1.5rem;border-radius:1rem">
+          <span class="text-label-sm" style={`color:${it.periodColor};font-weight:700`}>{it.period}</span>
+          <h4 class="text-headline-md" style="color:var(--color-on-surface);margin:4px 0 8px">{it.role}</h4>
+          <p style="color:var(--color-primary);font-weight:500;margin-bottom:1rem">{it.company}</p>
+          <p class="text-body-md" style="color:var(--color-on-surface-variant)">{it.desc}</p>
+        </div>
+      </div>
+    ))}
+  </div>
+</section>

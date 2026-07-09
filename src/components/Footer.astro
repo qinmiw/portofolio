@@ -1,0 +1,29 @@
+---
+---
+<footer style="background:var(--color-surface-container-lowest);width:100%;border-top:1px solid rgba(66,71,84,0.1);margin-top:6rem">
+  <div class="footer-inner px-gutter max-w-container-max mx-auto">
+    <a class="text-headline-md" style="font-weight:800;color:var(--color-on-surface);text-decoration:none" href="#">Qinthara</a>
+    <div class="footer-links">
+      <a class="footer-link" href="https://github.com/qinmiw" target="_blank" rel="noopener noreferrer">GitHub</a>
+      <a class="footer-link" href="https://www.linkedin.com/in/muhammad-qinthara-izzatullah-7a82383a8/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+      <a class="footer-link" href="https://www.instagram.com/qinthraa/" target="_blank" rel="noopener noreferrer">Instagram</a>
+      <a class="footer-link" href="mailto:qinthara260807@gmail.com">Email</a>
+    </div>
+    <p class="text-label-sm" style="color:var(--color-on-surface-variant);text-align:center">© 2026 Muhammad Qinthara Izzatullah. All rights reserved.</p>
+  </div>
+</footer>
+
+<style>
+  .footer-inner {
+    display: flex; flex-direction: column;
+    align-items: center; gap: 1.5rem;
+    padding-top: 2.5rem; padding-bottom: 2.5rem;
+    text-align: center;
+  }
+  @media (min-width: 768px) {
+    .footer-inner { flex-direction: row; justify-content: space-between; text-align: left; }
+  }
+  .footer-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; }
+  .footer-link { color: var(--color-on-surface-variant); font-weight: 500; text-decoration: none; font-size: var(--font-size-label-sm); transition: color 0.2s; }
+  .footer-link:hover { color: var(--color-secondary); }
+</style>

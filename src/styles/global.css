@@ -1,0 +1,184 @@
+@import "tailwindcss";
+
+@theme {
+  --color-background: #10131a;
+  --color-surface: #10131a;
+  --color-surface-dim: #10131a;
+  --color-surface-bright: #363941;
+  --color-surface-container-lowest: #0b0e15;
+  --color-surface-container-low: #191b23;
+  --color-surface-container: #1d2027;
+  --color-surface-container-high: #272a31;
+  --color-surface-container-highest: #32353c;
+  --color-surface-variant: #32353c;
+  --color-surface-tint: #adc6ff;
+  --color-on-surface: #e1e2ec;
+  --color-on-surface-variant: #c2c6d6;
+  --color-on-background: #e1e2ec;
+  --color-inverse-surface: #e1e2ec;
+  --color-inverse-on-surface: #2e3038;
+
+  --color-primary: #adc6ff;
+  --color-primary-container: #4d8eff;
+  --color-primary-fixed: #d8e2ff;
+  --color-primary-fixed-dim: #adc6ff;
+  --color-on-primary: #002e6a;
+  --color-on-primary-container: #00285d;
+  --color-on-primary-fixed: #001a42;
+  --color-on-primary-fixed-variant: #004395;
+  --color-inverse-primary: #005ac2;
+
+  --color-secondary: #4edea3;
+  --color-secondary-container: #00a572;
+  --color-secondary-fixed: #6ffbbe;
+  --color-secondary-fixed-dim: #4edea3;
+  --color-on-secondary: #003824;
+  --color-on-secondary-container: #00311f;
+  --color-on-secondary-fixed: #002113;
+  --color-on-secondary-fixed-variant: #005236;
+
+  --color-tertiary: #ffb786;
+  --color-tertiary-container: #df7412;
+  --color-tertiary-fixed: #ffdcc6;
+  --color-tertiary-fixed-dim: #ffb786;
+  --color-on-tertiary: #502400;
+  --color-on-tertiary-container: #461f00;
+  --color-on-tertiary-fixed: #311400;
+  --color-on-tertiary-fixed-variant: #723600;
+
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+  --color-on-error: #690005;
+  --color-on-error-container: #ffdad6;
+
+  --color-outline: #8c909f;
+  --color-outline-variant: #424754;
+
+  --font-size-headline-xl: 60px;
+  --font-size-headline-lg: 48px;
+  --font-size-headline-lg-mobile: 32px;
+  --font-size-headline-md: 30px;
+  --font-size-body-lg: 18px;
+  --font-size-body-md: 16px;
+  --font-size-label-sm: 14px;
+
+  --leading-headline-xl: 1.1;
+  --leading-headline-lg: 1.2;
+  --leading-headline-md: 1.3;
+  --leading-body-lg: 1.6;
+  --leading-body-md: 1.6;
+  --leading-label-sm: 1.0;
+
+  --tracking-headline-xl: -0.02em;
+  --tracking-headline-lg: -0.02em;
+  --tracking-label-sm: 0.05em;
+
+  --spacing-gutter: 24px;
+  --spacing-section-padding-mobile: 64px;
+  --spacing-section-padding-desktop: 120px;
+  --spacing-base: 8px;
+  --spacing-container-max: 1200px;
+
+  --radius: 0.25rem;
+  --radius-lg: 0.5rem;
+  --radius-xl: 0.75rem;
+  --radius-full: 9999px;
+
+  --font-family-sans: 'Inter', sans-serif;
+}
+
+/* Global */
+html {
+  scroll-behavior: smooth;
+  overflow-x: hidden;
+}
+
+body {
+  background-color: var(--color-background);
+  color: var(--color-on-surface);
+  font-family: var(--font-family-sans);
+  font-size: var(--font-size-body-md);
+  line-height: var(--leading-body-md);
+  overflow-x: hidden;
+  width: 100%;
+}
+
+::selection {
+  background-color: var(--color-primary-container);
+  color: var(--color-on-primary-container);
+}
+
+/* Typography helpers */
+.text-headline-xl  { font-size: var(--font-size-headline-xl);  line-height: var(--leading-headline-xl); letter-spacing: var(--tracking-headline-xl); font-weight: 800; }
+.text-headline-lg  { font-size: var(--font-size-headline-lg);  line-height: var(--leading-headline-lg); letter-spacing: var(--tracking-headline-lg); font-weight: 700; }
+.text-headline-md  { font-size: var(--font-size-headline-md);  line-height: var(--leading-headline-md); font-weight: 600; }
+.text-body-lg      { font-size: var(--font-size-body-lg);      line-height: var(--leading-body-lg); }
+.text-body-md      { font-size: var(--font-size-body-md);      line-height: var(--leading-body-md); }
+.text-label-sm     { font-size: var(--font-size-label-sm);     line-height: var(--leading-label-sm); letter-spacing: var(--tracking-label-sm); font-weight: 600; }
+
+/* Layout helpers */
+.max-w-container-max { max-width: var(--spacing-container-max); width: 100%; }
+.px-gutter            { padding-left: var(--spacing-gutter); padding-right: var(--spacing-gutter); }
+.py-section-padding-desktop { padding-top: var(--spacing-section-padding-desktop); padding-bottom: var(--spacing-section-padding-desktop); }
+.py-section-padding-mobile  { padding-top: var(--spacing-section-padding-mobile);  padding-bottom: var(--spacing-section-padding-mobile); }
+
+/* Glass card */
+.glass-card {
+  background: rgba(30, 41, 59, 0.5);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  will-change: transform, box-shadow;
+}
+.glass-card:hover {
+  border-color: rgba(173, 198, 255, 0.5);
+  box-shadow: 0 15px 35px -5px rgba(173, 198, 255, 0.15);
+  transform: translateY(-8px) scale(1.02);
+  z-index: 10;
+}
+
+/* Tech chip */
+.tech-chip {
+  background: rgba(30, 41, 59, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  color: var(--color-on-surface-variant);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.tech-chip:hover {
+  transform: translateY(-3px) scale(1.05);
+  border-color: rgba(173, 198, 255, 0.4);
+  box-shadow: 0 5px 15px rgba(173, 198, 255, 0.1);
+}
+
+/* Scroll reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all 0.8s cubic-bezier(0.165, 0.84, 0.44, 1);
+}
+.reveal.active {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Timeline */
+.timeline-track {
+  background: linear-gradient(to bottom, transparent, #1e293b, transparent);
+}
+.glow-node {
+  box-shadow: 0 0 15px #4edea3;
+}
+
+@media (max-width: 767px) {
+  .text-headline-xl { font-size: 36px; }
+  .text-headline-lg { font-size: var(--font-size-headline-lg-mobile); }
+  .text-headline-md { font-size: 22px; }
+  .py-section-padding-desktop { padding-top: var(--spacing-section-padding-mobile); padding-bottom: var(--spacing-section-padding-mobile); }
+}
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-20px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}

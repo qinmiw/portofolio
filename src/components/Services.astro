@@ -1,0 +1,31 @@
+---
+const services = [
+  { icon: 'language',     color: 'var(--color-primary)',   hoverColor: 'primary',   title: 'Web Development',  desc: 'Building lightning-fast, SEO-optimized web applications using modern frameworks.' },
+  { icon: 'phone_android',color: 'var(--color-secondary)', hoverColor: 'secondary', title: 'Mobile Solutions',  desc: 'Cross-platform mobile apps with native performance and stunning fluid animations.' },
+  { icon: 'layers',       color: 'var(--color-tertiary)',  hoverColor: 'tertiary',  title: 'UI/UX Design',     desc: 'User-centered design systems focused on accessibility and emotional engagement.' },
+  { icon: 'api',          color: 'var(--color-error)',     hoverColor: 'error',     title: 'API Integration',  desc: 'Robust backend architecture and third-party API connectivity for complex ecosystems.' },
+];
+---
+<style>
+  .services-grid { display: grid; gap: 2rem; }
+  @media (min-width: 768px)  { .services-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (min-width: 1024px) { .services-grid { grid-template-columns: repeat(4, 1fr); } }
+  .svc-icon { font-size: 2.5rem; margin-bottom: 1.5rem; display: block; transition: transform 0.3s; }
+  .svc-card:hover .svc-icon { transform: scale(1.25); }
+  .svc-title { font-size: var(--font-size-headline-md); font-weight: 700; margin-bottom: 1rem; color: var(--color-on-surface); transition: color 0.3s; }
+</style>
+
+<section id="services" class="py-section-padding-desktop reveal" style="background:var(--color-surface-container-low)">
+  <div class="px-gutter max-w-container-max mx-auto">
+    <h2 class="text-headline-lg" style="color:var(--color-on-surface);margin-bottom:4rem;text-align:center">Expert Services</h2>
+    <div class="services-grid">
+      {services.map(s => (
+        <div class="glass-card svc-card" style="padding:2rem;border-radius:1.5rem;border:1px solid rgba(66,71,84,0.1);cursor:default">
+          <span class="material-symbols-outlined svc-icon" style={`color:${s.color}`}>{s.icon}</span>
+          <h4 class="svc-title">{s.title}</h4>
+          <p class="text-body-md" style="color:var(--color-on-surface-variant)">{s.desc}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>

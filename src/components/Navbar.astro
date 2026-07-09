@@ -1,0 +1,78 @@
+---
+---
+<style>
+  header {
+    background: rgba(16, 19, 26, 0.6);
+    backdrop-filter: blur(24px);
+    border-bottom: 1px solid rgba(66, 71, 84, 0.15);
+    box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+  }
+  nav a { color: var(--color-on-surface-variant); font-weight: 500; text-decoration: none; transition: color 0.3s; }
+  nav a:hover { color: var(--color-primary); }
+  .btn-resume {
+    background: var(--color-primary-container); color: var(--color-on-primary-container);
+    padding: 8px 24px; border-radius: 9999px;
+    font-size: var(--font-size-label-sm); font-weight: 600;
+    letter-spacing: var(--tracking-label-sm);
+    border: none; cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;
+  }
+  .btn-resume:hover { transform: scale(1.05); box-shadow: 0 0 15px rgba(77,142,255,0.4); }
+  .nav-links {
+    display: none;
+  }
+  @media (min-width: 768px) {
+    .nav-links { display: flex; gap: 2rem; align-items: center; }
+    #menu-toggle { display: none; }
+    #mobile-menu { display: none !important; }
+  }
+  .mobile-menu {
+    display: none; flex-direction: column; gap: 0;
+    background: rgba(16,19,26,0.98);
+    border-top: 1px solid rgba(66,71,84,0.15);
+  }
+  .mobile-menu.open { display: flex; }
+  .mobile-menu a {
+    padding: 1rem var(--spacing-gutter);
+    border-bottom: 1px solid rgba(66,71,84,0.1);
+    font-size: 1rem; font-weight: 500;
+  }
+</style>
+
+<header class="fixed top-0 w-full z-50 transition-all duration-300">
+  <nav class="flex justify-between items-center px-gutter py-4 max-w-container-max mx-auto">
+    <a class="text-headline-md font-bold" style="color:var(--color-on-surface)" href="#">Qinthara</a>
+    <div class="nav-links">
+      <a href="#stack">Stack</a>
+      <a href="#projects">Projects</a>
+      <a href="#experience">Experience</a>
+      <a href="#services">Services</a>
+      <a href="#contact">Contact</a>
+      <a href="/CV_Muhammad Qinthara Izzatullah_Terbaru (2).pdf" target="_blank" rel="noopener noreferrer" class="btn-resume">Resume</a>
+    </div>
+    <button id="menu-toggle" class="md:hidden" style="color:var(--color-on-surface);background:none;border:none;cursor:pointer">
+      <span class="material-symbols-outlined" id="menu-icon">menu</span>
+    </button>
+  </nav>
+  <div class="mobile-menu" id="mobile-menu">
+    <a href="#stack" onclick="closeMenu()">Stack</a>
+    <a href="#projects" onclick="closeMenu()">Projects</a>
+    <a href="#experience" onclick="closeMenu()">Experience</a>
+    <a href="#services" onclick="closeMenu()">Services</a>
+    <a href="#contact" onclick="closeMenu()">Contact</a>
+    <a href="/CV_Muhammad Qinthara Izzatullah_Terbaru (1).pdf" target="_blank" rel="noopener noreferrer" class="btn-resume" style="text-decoration:none;text-align:center">Resume</a>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const icon = document.getElementById('menu-icon');
+  toggle?.addEventListener('click', () => {
+    menu?.classList.toggle('open');
+    if (icon) icon.textContent = menu?.classList.contains('open') ? 'close' : 'menu';
+  });
+  (window as any).closeMenu = () => {
+    menu?.classList.remove('open');
+    if (icon) icon.textContent = 'menu';
+  };
+</script>
